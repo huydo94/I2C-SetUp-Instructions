@@ -7,6 +7,8 @@ The main drivers of the Astro Pi are 3 transducers:
 
 In order to read data from the device, first specify what to read in the connect() method inside declareConnections(). Then specify the corresponding listener for the Behavior class to implement. The data read will then be passed to the listener interface's abstract methods. 
 
+For more inforamtion about the device's transducers and their methods, refer to their [javadocs](https://github.com/oci-pronghorn/FogLight/tree/master/src/main/java/com/ociweb/iot/astropi).
+
 ### LEDScreenTransducer
 1. Controlling the LED screen
 
@@ -17,6 +19,7 @@ The position of each pixel is indexed by its row (int between 0-7) and column (i
 2. Getting the joystick events
 
 First, call connect(AstroPi.GetJoystick) inside declareConnections() 
+
 The transducer support JoyStickListener interface which has joyStickEvent() method with 5 integer parameters: left, right,up,down,push . The value will be 1 if the corresponding action is detected. 
 
 ### IMUTransducer
@@ -26,19 +29,28 @@ By default, the 3 sensors are turned on with the following settings:
   1. Accelerometer: Scale = +/- 2g, output data rate = 952 Hz
   2. Gyroscope: Scale = 245 dps, output data rate = 119 Hz
   3. Magnetometer: Scale = +/- 4 Gauss, output data rate = 80 Hz
+ 
 Note that the output data rate is simply the rate that the hardware samples the data, not the rate that the application is reading it. The scale and output data rate of each sensors are configurable. 
 
 #### Reading data from the sensors
 
 1. Accelerometer
 
+First, call connect(AstroPi.GetAccel) inside declareConnections() 
+
 The AccelListener interface has accelerationValues() method which passes the reading of acceleration on the x,y and z axis. The values are in units of g(1 g = 9.8 m/s^2)
 
 2. Gyroscope
 
+First, call connect(AstroPi.GetGyro) inside declareConnections() 
+
+
 The GyroListener interface has gyroscopeValues() method which passes the gyroscope reading on the x,y and z axis. The values are in units of dps
 
 3. Magnetometer 
+
+First, call connect(AstroPi.GetMag) inside declareConnections() 
+
 
 The MagListener interface has magneticValues() method which passes the magnetic reading on the x,y and z axis. The values are in units of Gauss. 
 
@@ -49,19 +61,27 @@ The MagListener interface has magneticValues() method which passes the magnetic 
 By default, the pressure sensor and humidity sensor are turned on with the following settings:
 1. Pressure Sensor: output data rate = 1Hz
 2. Humidity Sensor: output data rate = 1Hz 
+
 Note that the output data rate is simply the rate that the hardware samples the data, not the rate that the application is reading it. The output data rate of each sensors is configurable. 
 
 #### Reading data from the sensors
 
 1. Pressure Sensor
 
+First, call connect(AstroPi.GetPressure) inside declareConnections() 
+
+
 The PressureListener interface has pressureValues() method which passes the pressure readings in units of mbar
 
 2. Humidity Sensor 
 
+First, call connect(AstroPi.GetHumidity) inside declareConnections() 
+
 The HumidityListener interface has humidityValues() method which passes the humidity readings in units of rH 
 
 3. Temperature Readings
+
+First, call connect(AstroPi.GetTempFromHumiditySensor) and/or connect(AstroPi.GetTempFromPressureSensor) inside declareConnections() 
 
 The TemperatureListener has tempValFromPressureSensor() and tempValFromHumiditySensor() which passes the temperature readings in units of Celsius from the corresponding sensor.
 
