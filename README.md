@@ -9,10 +9,12 @@ In order to read data from the device, first specify what to read in the connect
 
 ### LEDScreenTransducer
 1. Controlling the LED screen
+
 Refer to the transducer's javadocs for the list of functionalities supported. 
 Each "pixel" of the 8x8 LED Matrix consists of 3 Red,Green and Blue LEDs. The intensity of each LED is set by an integer between 0 and 63.
 The position of each pixel is indexed by its row (int between 0-7) and column (int between 0-7) position. 
 2. Getting the joystick events
+
 First, call connect(AstroPi.GetJoystick) inside declareConnections() 
 The transducer support JoyStickListener interface which has joyStickEvent() method with 5 integer parameters: left, right,up,down,push . The value will be 1 if the corresponding action is detected. 
 
