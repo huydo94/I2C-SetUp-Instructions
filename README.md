@@ -204,7 +204,7 @@ The 3 nums GetXYZ, GetTapAct and GetInterrupt are the 3 reading operations being
 
 From the application layer, inside declareConnections() method, calling connect(ThreeAxisAccelerometer_16g.GetXYZ) will activate the reading commands set up by the corresponding enum.
 
-The behavior class/ transducer class can get the I2C read data by implementing an I2CListener/ I2CListenerTransducer, which has the i2cEvent() abstract method. This event triggers whenever the data package requested by the enum is available.
+The behavior class/ transducer class can get the data sent from the slave by implementing an I2CListener/ I2CListenerTransducer, which has the i2cEvent() abstract method. This event triggers whenever the data package requested by the enum is available.
 
 ```java
 	@Override
